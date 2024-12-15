@@ -1,33 +1,22 @@
+mod desafio1;
+mod desafio2;
+mod desafio3;
+
 use std::io;
 
 fn main() {
-    println!("Desafio 3: Contador de Ocorrências");
-    let mut frase = String::new();
-    println!("digitar uma frase:");
+    println!("Selecione o desafio que deseja executar (1 a 3):");
+    let mut escolha = String::new();
     io::stdin()
-    .read_line(&mut frase)
-    .expect("erro ao ler a frase");
-    let frase = frase.trim().to_string();
+        .read_line(&mut escolha)
+        .expect("Erro ao ler a escolha");
+    
+    let escolha: u32 = escolha.trim().parse().expect("Por favor, digite um número válido");
 
-    let mut letra = String::new();
-    println!("Digite uma letra:");
-    io::stdin()
-    .read_line(&mut letra)
-    .expect("erro ao ler a letra");
-    let letra = letra.trim();
-
-    if letra.len() != 1 {
-        println!("Por favor, digite apenas um caractere.");
-        return;
-    }
-
-    let verificar = frase.matches(letra).count();
-
-    //println!("na frase tem {} da letra {}",Verificar,letra)
-
-    if verificar > 0 {
-        println!("A letra '{}' aparece {} vez(es) na frase.", letra, verificar);
-    } else {
-        println!("A letra '{}' não aparece na frase.", letra);
+    match escolha {
+        1 => desafio1::executar(),
+        2 => desafio2::executar(),
+        3 => desafio3::executar(),
+        _ => println!("Escolha inválida!"),
     }
 }
