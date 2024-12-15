@@ -1,20 +1,33 @@
 use std::io;
 
 fn main() {
-    println!("Desafio 2: Verificador de Palíndromo");
-    let mut palavra = String::new();
-    println!("Digite a palavra:");
+    println!("Desafio 3: Contador de Ocorrências");
+    let mut frase = String::new();
+    println!("digitar uma frase:");
     io::stdin()
-    .read_line(&mut palavra)
-    .expect("erro ao ler a palavra");
+    .read_line(&mut frase)
+    .expect("erro ao ler a frase");
+    let frase = frase.trim().to_string();
 
-    palavra = palavra.trim().to_string();
+    let mut letra = String::new();
+    println!("Digite uma letra:");
+    io::stdin()
+    .read_line(&mut letra)
+    .expect("erro ao ler a letra");
+    let letra = letra.trim();
 
-    let palavra_reversa: String = palavra.chars().rev().collect();
+    if letra.len() != 1 {
+        println!("Por favor, digite apenas um caractere.");
+        return;
+    }
 
-    if (palavra == palavra_reversa) {
-        println!("Sim, é um palíndromo")
-    }else {
-        println!("Não, não é um palíndromo")
+    let verificar = frase.matches(letra).count();
+
+    //println!("na frase tem {} da letra {}",Verificar,letra)
+
+    if verificar > 0 {
+        println!("A letra '{}' aparece {} vez(es) na frase.", letra, verificar);
+    } else {
+        println!("A letra '{}' não aparece na frase.", letra);
     }
 }
